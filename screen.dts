@@ -7,14 +7,17 @@
     fragment@0 {
         target = <&spi1>;
         __overlay__ {
-            status = "okay";
             #address-cells = <1>;
             #size-cells = <0>;
 
+            status = "okay";
+            pinctrl-names = "default", "default";
+            cs-gpios = <&pio 7 3 0>, <&r_pio 0 8 0>; // PH3 & PL8
+
             ili9486: ili9486@0 {
                 compatible = "ilitek,ili9486";
-                reg = <0>;  // CS = PH3 (SPI1 CS0)
-                spi-max-frequency = <16000000>;
+                reg = <0>;
+                spi-max-frequency = <48000000>;
                 rotate = <90>;
                 fps = <30>;
                 buswidth = <8>;
@@ -37,39 +40,30 @@
                     0x10000e2 0x0f 0x32 0x2e 0x0b 0x0d 0x05 0x47 0x75 0x37 0x06 0x10 0x03 0x24 0x20 0x00
                     0x1000036 0x28
                     0x1000011
-                    0x1000029
-                >;
-            };
+                    0x1000029>;
+                };
 
-            xpt2046: xpt2046@1 {
+            ads7846: ads7846@1 {
                 compatible = "ti,ads7846";
-                reg = <1>;  // 別 CS（物理 CS は PL8）
+                reg = <1>;
+                pinctrl-names = "default";
+                debug = <0>;
                 spi-max-frequency = <2000000>;
-                pendown-gpio = <&pio 3 24 0>;  // PD24 = TP_IRQ
-                interrupt-parent = <&pio>;
-                interrupts = <3 24 2>;  // PD24, high-to-low edge
-                ti,keep-vref-on = <1>;
-                ti,x-min = /bits/ 16 <200>;
-                ti,x-max = /bits/ 16 <3900>;
-                ti,y-min = /bits/ 16 <200>;
-                ti,y-max = /bits/ 16 <3900>;
-                ti,x-plate-ohms = /bits/ 16 <60>;
-                ti,pressure-max = /bits/ 16 <255>;
-                ti,swap-xy = <1>;
-                status = "okay";
-            };
-        };
-    };
 
-    fragment@1 {
-        target = <&pio>;
-        __overlay__ {
-            ili9486_pins: ili9486_pins {
-                pins = "PD16", "PD21", "PD24";
-                function = "gpio_out";
-                bias-pull-up;
-                output-high;
+                interrupt-parent = <&pio>;
+                interrupts = <3 24 2>;  // PD24
+
+                pendown-gpio = <&pio 3 24 0>;  // PD24 = TP_IRQ
+                /* driver defaults, optional */
+                ti,x-min = /bits/ 16 <0>;
+                ti,y-min = /bits/ 16 <0>;
+                ti,x-max = /bits/ 16 <0x0FFF>;
+                ti,y-max = /bits/ 16 <0x0FFF>;
+                ti,pressure-min = /bits/ 16 <0>;
+                ti,pressure-max = /bits/ 16 <0xFFFF>;
+                ti,x-plate-ohms = /bits/ 16 <400>;
             };
         };
     };
+};
 };
