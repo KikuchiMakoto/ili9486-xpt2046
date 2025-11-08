@@ -1,14 +1,9 @@
 # ili9486
-Overlay for OrangePiZero screen ili9486 + xpt2046 (3.5inch rpi lcd (a) v3)
-
-
+Overlay for OrangePi3 screen ili9486 + xpt2046 (3.5inch rpi lcd)
 
 "armbian-add-overlay ili9486-xpt2046/screen.dts"
 
-Pin DC : 18
-Pin Reset : 2
-
-Works on Amrbian Buster kernel 5.4.43-sunxi
+Works on Amrbian v25.8.2 Noble kernel 6.12.47-sunxi64
 
 With xinput, get pointer name : "DISPLAY=:0.0 xinput list"
 then apply matrix to modify coordinates:
