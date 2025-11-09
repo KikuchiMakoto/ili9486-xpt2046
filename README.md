@@ -1,8 +1,8 @@
 # OrangePi3
 
-Overlay, screen ili9486 + xpt2046 (3.5inch rpi lcd)
-"armbian-add-overlay ili9486-xpt2046/orangepi3.dts"
-Works on Amrbian v25.8.2 Noble kernel 6.12.47-sunxi64
+Overlay, screen ili9486 + xpt2046 (3.5inch rpi lcd)  
+"armbian-add-overlay ili9486-xpt2046/orangepi3.dts"  
+Works on Amrbian v25.8.2 Noble kernel 6.12.47-sunxi64  
 
 |Pin#|3.5 inch LCD| OrangePi3 |
 | ---- | ---- | ---- |
