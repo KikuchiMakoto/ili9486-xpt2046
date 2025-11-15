@@ -1,1 +1,1 @@
-extraargs=dyndbg="file drivers/input/touchscreen/ads7846.c +pflmt"
+extraargs=dyndbg="file drivers/input/touchscreen/ads7846.c +pflmt; file drivers/spi/spi.c +pflmt; file kernel/base/dd.c +pflmt;"
