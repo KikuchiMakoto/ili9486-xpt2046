@@ -13,7 +13,7 @@
                 output-high;
                 drive-strength = <20>;
                 bias-pull-up;
-	    };
+            };
             touch_pin: touch-pin {
                 pins = "PL10";
                 function = "gpio_in";
