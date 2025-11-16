@@ -3,11 +3,16 @@
 Overlay, screen ili9486 + xpt2046 (3.5inch rpi lcd)  
 "armbian-add-overlay ili9486-xpt2046/orangepi3.dts"  
 
-## <font color="red"><b>IMPORTANT</b></font>  
+## xpt2046(ads7846)
 On the OrangePi3, the original TP_IRQ pin does not support interrupts.  
 Therefore, you need to connect it to a pin outside of Port D, which has very few interrupt-capable pins.  
 However, as you can see from the table, only the PL pins are available, so TP_IRQ has been reassigned to PL10.  
 When verifying operation, you cannot connect the board socket directly, so you will need to find a way to reconnect the wiring yourself.
+
+In my case, Max SPI clock is 1.8MHz.  
+
+## ili9486
+In my case, Max SPI clock is 60MHz.  
 
 ## Pin Table
 | OrangePi3 | IRQ | Pin# | 3.5 inch TouchPanel |
