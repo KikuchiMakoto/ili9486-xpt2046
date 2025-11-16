@@ -4,7 +4,19 @@
 / {
     compatible = "allwinner,sun50i-h6";
     
+
+
     fragment@0 {
+        target = <&pio>;
+        __overlay__ {
+            touch_pin_dummy: touch-pin-dummy {
+                pins = "PD24";
+                function = "gpio_in";
+            };
+        };
+    };
+    
+    fragment@1 {
         target = <&r_pio>;
         __overlay__ {
             spi1_cs1_pin: spi1-cs1-pin {
@@ -17,12 +29,11 @@
             touch_pin: touch-pin {
                 pins = "PL10";
                 function = "gpio_in";
-                bias-pull-up;
             };
         };
     };
 
-    fragment@1 {
+    fragment@2 {
         target = <&spi1>;
         __overlay__ {
             status = "okay";
@@ -40,7 +51,7 @@
                 txbuflen = <32768>;
                 rotate = <90>;
                 bgr = <0>;
-                fps = <30>;
+                fps = <60>;
                 buswidth = <8>;
                 regwidth = <16>;
                    
@@ -71,10 +82,15 @@
                 spi-max-frequency = <2000000>;
                 
                 /* irq pin: change from PD24 to PL10 */
-		interrupt-parent = <&r_pio>;
-		interrupts = <0 10 2>;
-                pendown-gpio = <&r_pio 0 10 2>;
+                interrupt-parent = <&r_pio>;
+                interrupts = <0 10 2>;/* high-to-low edge triggered */
+                pendown-gpio = <&r_pio 0 10 0>;
 
+                ti,keep-vref-on = <1>;
+                ti,x-min = /bits/ 16 <200>;
+                ti,x-max = /bits/ 16 <3900>;
+                ti,y-min = /bits/ 16 <200>;
+                ti,y-max = /bits/ 16 <3900>;
                 ti,x-plate-ohms = /bits/ 16 <60>;
                 ti,pressure-max = /bits/ 16 <255>;
             };
