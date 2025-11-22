@@ -89,10 +89,10 @@
                 ti,keep-vref-on = <1>;
                 ti,x-min = /bits/ 16 <300>;
                 ti,x-max = /bits/ 16 <3900>;
-                ti,y-min = /bits/ 16 <100>;
-                ti,y-max = /bits/ 16 <3700>;
-                ti,x-plate-ohms = /bits/ 16 <60>;
-                ti,pressure-min = /bits/ 16 <10>;
+                ti,y-min = /bits/ 16 <200>;
+                ti,y-max = /bits/ 16 <3800>;
+                ti,x-plate-ohms = /bits/ 16 <40>;
+                ti,pressure-min = /bits/ 16 <5>;
                 ti,pressure-max = /bits/ 16 <255>;
 
                 touchscreen-inverted-y;
